@@ -18,13 +18,14 @@ interface CaptureContext {
         cssSelectorsOfIgnoredElements: string[];
         computedStyleKeyValuePairsOfIgnoredElements: {};
         tagsOfSkippedElementsForChildTreeCssHandling: string[];
-        attrKeyForSavingElementOrigClass: string;
-        attrKeyForSavingElementOrigStyle: string;
+        attrKeyForSavingElementOrigClass?: string | null;
+        attrKeyForSavingElementOrigStyle?: string | null;
         prefixForNewGeneratedClasses: string;
         prefixForNewGeneratedPseudoClasses: string;
         imageFormatForDataUrl: string;
         imageQualityForDataUrl: number;
         logLevel: LogLevel;
+        ignoreElements?: (element: Element) => boolean;
     };
 }
 
@@ -48,11 +49,15 @@ const getClasses = (domElm: Element): string[] => {
 const handleElmCss = (context: CaptureContext, domElm: Element, newElm: Element): void => {
     const handleOrigClassAndStyle = (): void => {
         if (getClasses(newElm).length > 0) {
-            newElm.setAttribute(context.options.attrKeyForSavingElementOrigClass, getClassName(newElm));
+            if (context.options.attrKeyForSavingElementOrigClass != null) {
+                newElm.setAttribute(context.options.attrKeyForSavingElementOrigClass, getClassName(newElm));
+            }
             newElm.removeAttribute('class');
         }
         if (newElm.getAttribute('style')) {
-            newElm.setAttribute(context.options.attrKeyForSavingElementOrigStyle, newElm.getAttribute('style') || '');
+            if (context.options.attrKeyForSavingElementOrigStyle != null) {
+                newElm.setAttribute(context.options.attrKeyForSavingElementOrigStyle, newElm.getAttribute('style') || '');
+            }
             newElm.removeAttribute('style');
         }
     };
@@ -106,8 +111,8 @@ const getCanvasDataUrl = (context: CaptureContext, domElm: HTMLImageElement | HT
         if (!context.canvas) {
             context.canvas = context.doc.createElement('canvas');
         }
-        context.canvas.width = domElm instanceof HTMLImageElement ? domElm.naturalWidth : domElm.offsetWidth;
-        context.canvas.height = domElm instanceof HTMLImageElement ? domElm.naturalHeight : domElm.offsetHeight;
+        context.canvas.width = domElm instanceof HTMLImageElement ? domElm.naturalWidth : domElm.width;
+        context.canvas.height = domElm instanceof HTMLImageElement ? domElm.naturalHeight : domElm.height;
         const ctx = context.canvas.getContext('2d');
         if (ctx) {
             ctx.drawImage(domElm, 0, 0);
@@ -179,7 +184,8 @@ const shouldIgnoreElm = (context: CaptureContext, domElm: Element): boolean => {
             }
         }
     }
-    return false;
+
+    return context.options.ignoreElements?.(domElm) ?? false;
 };
 
 const recursiveWalk = (context: CaptureContext, domElm: Element, newElm: Element, handleCss: boolean): void => {
@@ -311,8 +317,20 @@ const prepareOutput = (newHtmlObject: HTMLElement, outputType: OutputType): stri
 };
 
 export const goCapture: CaptureFunction = (outputType?, htmlDocument?, options?) => {
-    const startTime = new Date().getTime();
-    let output = null;
+    const finalOptions = {
+        rulesToAddToDocStyle: options?.rulesToAddToDocStyle || [],
+        cssSelectorsOfIgnoredElements: options?.cssSelectorsOfIgnoredElements || ['script', 'link', 'style'],
+        computedStyleKeyValuePairsOfIgnoredElements: { display: 'none' },
+        tagsOfSkippedElementsForChildTreeCssHandling: options?.tagsOfSkippedElementsForChildTreeCssHandling || ['svg'],
+        attrKeyForSavingElementOrigClass: options?.attrKeyForSavingElementOrigClass == null ? null : (options.attrKeyForSavingElementOrigClass || '_class'),
+        attrKeyForSavingElementOrigStyle: options?.attrKeyForSavingElementOrigStyle == null ? null : (options.attrKeyForSavingElementOrigStyle || '_style'),
+        prefixForNewGeneratedClasses: options?.prefixForNewGeneratedClasses || 'c',
+        prefixForNewGeneratedPseudoClasses: options?.prefixForNewGeneratedPseudoClasses || 'p',
+        imageFormatForDataUrl: options?.imageFormatForDataUrl || 'image/png',
+        imageQualityForDataUrl: options?.imageQualityForDataUrl || 0.92,
+        logLevel: options?.logLevel || LogLevel.WARN,
+        ignoreElements: options?.ignoreElements,
+    };
     const context: CaptureContext = {
         isBody: false,
         baseClass: new Map<string, string>(),
@@ -324,23 +342,12 @@ export const goCapture: CaptureFunction = (outputType?, htmlDocument?, options?)
         canvas: null,
         doc: htmlDocument || document,
         ignoredElms: [],
-        options: {
-            ...{
-                rulesToAddToDocStyle: [],
-                cssSelectorsOfIgnoredElements: ['script', 'link', 'style'],
-                computedStyleKeyValuePairsOfIgnoredElements: { display: 'none' },
-                tagsOfSkippedElementsForChildTreeCssHandling: ['svg'],
-                attrKeyForSavingElementOrigClass: '_class',
-                attrKeyForSavingElementOrigStyle: '_style',
-                prefixForNewGeneratedClasses: 'c',
-                prefixForNewGeneratedPseudoClasses: 'p',
-                imageFormatForDataUrl: 'image/png',
-                imageQualityForDataUrl: 0.92,
-                logLevel: LogLevel.WARN,
-            },
-            ...(options || {}),
-        },
+        options: finalOptions,
     };
+
+    const startTime = new Date().getTime();
+    let output = null;
+
     try {
         logger.setLogLevel(context.options.logLevel);
         const newHtmlObject = getHtmlObject(context);

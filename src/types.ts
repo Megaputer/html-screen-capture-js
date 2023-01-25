@@ -14,13 +14,14 @@ export interface Options {
     rulesToAddToDocStyle?: string[];
     cssSelectorsOfIgnoredElements: string[];
     tagsOfSkippedElementsForChildTreeCssHandling?: string[];
-    attrKeyForSavingElementOrigClass?: string;
-    attrKeyForSavingElementOrigStyle?: string;
+    attrKeyForSavingElementOrigClass?: string | null;
+    attrKeyForSavingElementOrigStyle?: string | null;
     prefixForNewGeneratedClasses?: string;
     prefixForNewGeneratedPseudoClasses?: string;
     imageFormatForDataUrl?: string;
     imageQualityForDataUrl?: number;
     logLevel?: LogLevel;
+    ignoreElements?: (element: Element) => boolean;
 }
 export type CaptureOutput = HTMLElement | string | null;
 export type CaptureFunction = (
