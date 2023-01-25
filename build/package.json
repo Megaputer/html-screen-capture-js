@@ -1,0 +1,38 @@
+{
+    "name": "@megaputer/html-screen-capture-js",
+    "version": "2.0.5",
+    "description": "HTML Screen Capture JS",
+    "keywords": [
+        "html",
+        "dom",
+        "screen",
+        "capture",
+        "image",
+        "js",
+        "javascript",
+        "ts",
+        "typescript"
+    ],
+    "homepage": "https://github.com/Megaputer/html-screen-capture-js",
+    "bugs": "https://github.com/Megaputer/html-screen-capture-js/issues",
+    "license": "MIT",
+    "author": "Uri Kalish <uri.kalish@gmail.com> (https://github.com/urikalish)",
+    "contributors": [
+        "Uri Kalish <uri.kalish@gmail.com> (https://github.com/urikalish)",
+        "Gal Malachi (https://github.com/gal1419)",
+        "alimovz (https://github.com/alimovz)"
+    ],
+    "files": [
+        "./html-screen-capture.*.js",
+        "./html-screen-capture.*.js.map",
+        "./types.d.ts",
+        "./index.d.ts"
+    ],
+    "main": "html-screen-capture.min.js",
+    "module": "html-screen-capture.esm.js",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Megaputer/html-screen-capture-js"
+    }
+}

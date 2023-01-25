@@ -1,5 +1,5 @@
 {
-    "name": "html-screen-capture-js",
+    "name": "@megaputer/html-screen-capture-js",
     "version": "2.0.5",
     "description": "HTML Screen Capture JS",
     "keywords": [
@@ -13,8 +13,8 @@
         "ts",
         "typescript"
     ],
-    "homepage": "https://github.com/html-screen-capture-js/html-screen-capture-js",
-    "bugs": "https://github.com/html-screen-capture-js/html-screen-capture-js/issues",
+    "homepage": "https://github.com/Megaputer/html-screen-capture-js",
+    "bugs": "https://github.com/Megaputer/html-screen-capture-js/issues",
     "license": "MIT",
     "author": "Uri Kalish <uri.kalish@gmail.com> (https://github.com/urikalish)",
     "contributors": [
@@ -33,7 +33,7 @@
     "types": "dist/index.d.ts",
     "repository": {
         "type": "git",
-        "url": "https://github.com/html-screen-capture-js/html-screen-capture-js"
+        "url": "https://github.com/Megaputer/html-screen-capture-js"
     },
     "scripts": {
         "build": "rollup -c --environment BUILD:production",
@@ -61,6 +61,7 @@
         "eslint": "^7.32.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-prettier": "^3.4.0",
+        "glob": "^8.1.0",
         "husky": "^7.0.2",
         "prettier": "^2.3.0",
         "rollup": "^2.33.3",

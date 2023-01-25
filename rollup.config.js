@@ -5,6 +5,7 @@ import typescript from 'rollup-plugin-typescript2';
 import json from '@rollup/plugin-json';
 import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
+import { cp } from "./build/rollup-copy-file";
 
 const libraryName = 'htmlScreenCaptureJs';
 
@@ -37,5 +38,9 @@ export default {
         sourceMaps(),
 
         terser(),
+
+        cp('./build', 'package.json', 'dist'),
+
+        cp('./', 'LICENSE', 'dist'),
     ],
 };
