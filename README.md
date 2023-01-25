@@ -1,12 +1,12 @@
 # html-screen-capture-js
 
-[![NPM downloads](https://img.shields.io/npm/dm/html-screen-capture-js?color=brightgreen)](https://www.npmjs.com/package/html-screen-capture-js)
+[![NPM downloads](https://img.shields.io/npm/dm/@megaputer/html-screen-capture-js?color=brightgreen)](https://www.npmjs.com/package/@megaputer/html-screen-capture-js)
 [![License](https://img.shields.io/badge/License-MIT-brightgreen.svg?label=license)](https://opensource.org/licenses/MIT)
 [![Types](https://img.shields.io/npm/types/html-screen-capture-js?color=brightgreen)](https://www.typescriptlang.org/)
-[![NPM version](https://img.shields.io/npm/v/html-screen-capture-js.svg?color=blue)](https://www.npmjs.com/package/html-screen-capture-js)
-[![Github Release](https://img.shields.io/github/release/html-screen-capture-js/html-screen-capture-js/all.svg?color=blue)](https://github.com/html-screen-capture-js/html-screen-capture-js/releases)
-[![Stars](https://img.shields.io/github/stars/html-screen-capture-js/html-screen-capture-js?color=blue)](https://github.com/html-screen-capture-js/html-screen-capture-js/stargazers)
-[![Contributers](https://img.shields.io/github/contributors/html-screen-capture-js/html-screen-capture-js?color=blue)](https://github.com/html-screen-capture-js/html-screen-capture-js/graphs/contributors)
+[![NPM version](https://img.shields.io/npm/v/@megaputer/html-screen-capture-js.svg?color=blue)](https://www.npmjs.com/package/@megaputer/html-screen-capture-js)
+[![Github Release](https://img.shields.io/github/release/Megaputer/html-screen-capture-js/all.svg?color=blue)](https://github.com/html-screen-capture-js/html-screen-capture-js/releases)
+[![Stars](https://img.shields.io/github/stars/Megaputer/html-screen-capture-js?color=blue)](https://github.com/Megaputer/html-screen-capture-js/stargazers)
+[![Contributers](https://img.shields.io/github/contributors/Megaputer/html-screen-capture-js?color=blue)](https://github.com/Megaputer/html-screen-capture-js/graphs/contributors)
 
 A tiny, highly-customizable, single-function javascript/typescript library that captures a webpage and returns a new lightweight, self-contained HTML document. The library removes all external file dependencies while preserving the original appearance of the page. At only 12KB, it offers unparalleled speed and peerless reliability.
 
@@ -44,11 +44,11 @@ customized via an additional parameter. The source code is written in ES6, and t
 
 You can get this library from these sources:
 
-- From [GitHub](https://github.com/html-screen-capture-js/html-screen-capture-js)
+- From [GitHub](https://github.com/Megaputer/html-screen-capture-js)
 
-- From [npm](https://www.npmjs.com/package/html-screen-capture-js)
+- From [npm](https://www.npmjs.com/package/@megaputer/html-screen-capture-js)
 
-[![NPM](https://nodei.co/npm/html-screen-capture-js.png?compact=true)](https://www.npmjs.com/package/html-screen-capture-js)
+[![NPM](https://nodei.co/npm/@megaputer/html-screen-capture-js.png?compact=true)](https://www.npmjs.com/package/@megaputer/html-screen-capture-js)
 
 <a name="artifacts"></a>
 ## Artifacts
@@ -59,7 +59,7 @@ You can get this library from these sources:
 <a name="feedback"></a>
 ## Feedback and Bugs
 
-[Leave feedback or report a bug](https://github.com/html-screen-capture-js/html-screen-capture-js/issues)
+[Leave feedback or report a bug](https://github.com/Megaputer/html-screen-capture-js/issues)
 
 <a name="contribution"></a>
 ## Code Contribution
@@ -248,4 +248,4 @@ const htmlDocStr = htmlDocObj.outerHTML;
 ...
 ```
 
-Obviously, you can also create a new enhancement request type issue [here](https://github.com/html-screen-capture-js/html-screen-capture-js/issues)
+Obviously, you can also create a new enhancement request type issue [here](https://github.com/Megaputer/html-screen-capture-js/issues)
