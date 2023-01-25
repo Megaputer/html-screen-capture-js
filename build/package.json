@@ -1,6 +1,6 @@
 {
     "name": "@megaputer/html-screen-capture-js",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "private": false,
     "description": "HTML Screen Capture JS",
     "keywords": [
@@ -24,10 +24,10 @@
         "alimovz (https://github.com/alimovz)"
     ],
     "files": [
-        "./html-screen-capture.*.js",
-        "./html-screen-capture.*.js.map",
-        "./types.d.ts",
-        "./index.d.ts"
+        "html-screen-capture.*.js",
+        "html-screen-capture.*.js.map",
+        "types.d.ts",
+        "index.d.ts"
     ],
     "main": "html-screen-capture.min.js",
     "module": "html-screen-capture.esm.js",
