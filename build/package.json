@@ -1,6 +1,7 @@
 {
     "name": "@megaputer/html-screen-capture-js",
     "version": "2.0.5",
+    "private": false,
     "description": "HTML Screen Capture JS",
     "keywords": [
         "html",
